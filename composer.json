@@ -1,0 +1,22 @@
+{
+    "name": "zhibaihe/movable",
+    "description": "A template engine.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "DUAN Zhiyan",
+            "email": "zhiyan@zhibaihe.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^4.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zhibaihe\\Movable\\": "src/"
+        }
+    }
+}
