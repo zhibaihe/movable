@@ -2,7 +2,7 @@
 
 use Zhibaihe\Movable\Compiler;
 
-class CompilerTest extends PHPUnit_Framework_TestCase
+class CompilerTest extends Test
 {
 
 	protected $compiler;
@@ -32,6 +32,22 @@ class CompilerTest extends PHPUnit_Framework_TestCase
 		$result = $this->compiler->compile('Hello, {{$a && $b}}');
 
 		$this->assertEquals('Hello, <?php echo $a && $b; ?>', $result);
+	}
+
+	/** @test */
+	public function it_compiles_blank_statement()
+	{
+		$result = $this->compiler->compile("hello, @blank(\"name\"), @blank(\"mark\")");
+
+		$this->assertEquals('hello, <?php $_f->blank("name"); ?>, <?php $_f->blank("mark"); ?>', $result);
+	}
+
+	/** @test */
+	public function it_compiles_fill_statement()
+	{
+		$result = $this->compiler->compile("a, @fill(\"name\")\nBlock content\n@endfill\nb.");
+
+		$this->assertEquals("a, <?php \$_f->fill(\"name\"); ?>\nBlock content\n<?php \$_f->endFill(); ?>\nb.", $result);
 	}
 }
 
